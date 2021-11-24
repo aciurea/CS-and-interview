@@ -27,6 +27,11 @@
 - an array of references to arrays
 
 - Pascal's Triangle -> check https://archive.org/details/ucberkeley_webcast_Wp8oiO_CZZE
-  1
-  1 2 1
-  1 3 3 1
+
+## Dynamic arrays
+
+- Solution: store a pointer to a dynamically allocatd array and replace it with a newly-allocated array as needed
+- It is also called resizeable array
+- Inserting: If the size of the array is excedeed, double the size and replace the array O(n) worst case scenario
+- Pushing: If the size of the array is half occupied, shrink to half the size
+- Get should be O(1)
