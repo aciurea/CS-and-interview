@@ -1,9 +1,9 @@
 // @ts-check
 
 const log = console.log.bind(this);
-class LinkedList {
-  #head = { next: null };
-  #tail = this.#head;
+export class LinkedList {
+  #head = {};
+  #tail = {};
 
   constructor(value) {
     this.#head = { value, next: null };
@@ -103,15 +103,15 @@ class LinkedList {
   }
 }
 
-const list = new LinkedList(1);
+// const list = new LinkedList(1);
 
-list.insert(2);
-list.insert(3);
-list.insert(4);
+// list.insert(2);
+// list.insert(3);
+// list.insert(4);
 
-list.insertBeforeHead(9);
-list.insertBeforeHead(10);
+// list.insertBeforeHead(9);
+// list.insertBeforeHead(10);
 
-list.insertAfterNodeValue(10, 999);
-list.print();
+// list.insertAfterNodeValue(10, 999);
+// list.print();
 // log(list.find(132));
