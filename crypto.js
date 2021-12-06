@@ -24,13 +24,14 @@ function findElement() {
   return [lastDayElement, last7DaysElement];
 }
 
-function analyse() {
+function analyse(isNegative = false) {
   const nameIndex = 2;
   const lastDayIndex = 4;
   const last7DaysIndex = 5;
   const lastMonthIndex = 6;
   const last2MonthsIndex = 7;
   const last3MonthsIndex = 8;
+  const negativeClassName = 'icon-Caret-down';
 
   const body = document.querySelector('tbody');
 
@@ -43,6 +44,17 @@ function analyse() {
     const link = tr.children[nameIndex].querySelector('a').href;
 
     if (!name) {
+      return acc;
+    }
+
+    const className =
+      tr.children[lastDayIndex]?.children[0]?.children[0]?.className ?? '';
+    const hasNegativeClass = className.includes(negativeClassName);
+
+    if (
+      (isNegative && !hasNegativeClass) ||
+      (!isNegative && hasNegativeClass)
+    ) {
       return acc;
     }
 
@@ -61,19 +73,22 @@ function analyse() {
   return report;
 }
 
-function changePage() {
+function changePage(report) {
   const pagination = document.querySelector('ul.pagination');
   const HTML = document.querySelector('html');
 
-  const [nextBtn] = pagination.querySelector('li.next').children;
+  const nextBtn = pagination.querySelector('li.next');
+  const [nextALink] = nextBtn.children;
   const [, page1] = pagination.children;
 
   function innerNavigation() {
     return new Promise((resolve) => {
       if (nextBtn.className.includes('disabled')) {
-        page1?.click();
+        const a = page1?.querySelector('a');
+        console.log(report, a);
+        a?.click();
       } else {
-        nextBtn.click();
+        nextALink.click();
       }
 
       let timeoutId = setTimeout(() => {
@@ -94,12 +109,13 @@ function run() {
   const [lastDayElement] = findElement();
   const HTML = document.querySelector('html');
   let start = false;
-  const change = changePage();
+  const REPORT = { positive: [], negative: [] };
+  const change = changePage(REPORT);
 
-  async function buildReport(isOk) {
+  async function buildReport(isOk, isNegative) {
     return new Promise((resolve) => {
       const timeoutId = setTimeout(() => {
-        const report = analyse();
+        const report = analyse(isNegative);
         const keys = Object.keys(report);
         const RESULT = keys
           .filter((key) => {
@@ -119,10 +135,14 @@ function run() {
   async function log() {
     lastDayElement.click();
     let report = await buildReport((num) => num >= positiveThreshold);
-    console.log('positive report', report);
+    if (Object.keys(report).length) {
+      REPORT.positive.push(report);
+    } // push only if there is some data
     lastDayElement.click();
-    report = await buildReport((num) => num >= negativeThreshold);
-    console.log('negative report', report);
+    report = await buildReport((num) => num >= negativeThreshold, true);
+    if (Object.keys(report).length) {
+      REPORT.negative.push(report);
+    } // push only if there is some data
     innerRun();
   }
 
