@@ -85,7 +85,7 @@ function changePage(report) {
     return new Promise((resolve) => {
       if (nextBtn.className.includes('disabled')) {
         const a = page1?.querySelector('a');
-        console.log(report, a);
+        sendReport(report);
         a?.click();
       } else {
         nextALink.click();
@@ -169,4 +169,11 @@ function run() {
   }
 
   return innerRun;
+}
+
+function sendReport(report) {
+  fetch('localhost:3001/send', {
+    method: 'POST',
+    body: JSON.stringify(report),
+  });
 }
