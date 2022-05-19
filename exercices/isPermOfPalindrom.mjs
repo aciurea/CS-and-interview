@@ -1,3 +1,4 @@
+// @ts-check
 /*
 Input Tact Coa
 Output: True (permutatons: "tacto cat", "atco cta", etc)
@@ -6,15 +7,7 @@ Output: True (permutatons: "tacto cat", "atco cta", etc)
 
 import { isPermutation } from './isPermutation.mjs';
 import { isOdd } from './isOdd.mjs';
-
-const countChars = (str) => {
-  const countObj = {};
-  for (const char of str) {
-    if (!countObj[char]) countObj[char] = 1;
-    else countObj[char] += 1;
-  }
-  return countObj;
-};
+import { countChars } from './countChars.mjs';
 
 const checkIfCanBePalindrom = (obj) => {
   let count = 0;
