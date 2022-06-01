@@ -1,4 +1,5 @@
-import { logMatrix } from './log.mjs';
+// @ts-check
+import { logMatrix } from '../utils/log.mjs';
 
 function rotateMatrix(matrix) {
   const length = matrix[0].length - 1;

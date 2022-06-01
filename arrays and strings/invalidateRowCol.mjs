@@ -1,4 +1,4 @@
-import { logMatrix } from './log.mjs';
+import { logMatrix } from '../utils/log.mjs';
 /*
 if an Matrix of NxM has a 0, invalidate row and col
 */
