@@ -90,6 +90,10 @@ export class LinkedList {
     return false;
   }
 
+  getList() {
+    return this.#head;
+  }
+
   print() {
     log(JSON.stringify(this.#head, null, 3));
   }
