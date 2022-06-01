@@ -6,7 +6,7 @@ Output: True (permutatons: "tacto cat", "atco cta", etc)
 */
 
 import { isPermutation } from './isPermutation.mjs';
-import { isOdd } from './isOdd.mjs';
+import { isOdd } from '../utils/isOdd.mjs';
 import { countChars } from './countChars.mjs';
 
 const checkIfCanBePalindrom = (obj) => {
