@@ -12,12 +12,16 @@ export class LinkedList {
 
   insert(value) {
     const node = { value, next: null };
-    this.#tail.next = node;
-    this.#tail = node;
+    if (this.#tail.value == null) this.#head = this.#tail = node;
+    else {
+      this.#tail.next = node;
+      this.#tail = node;
+    }
   }
 
   insertBeforeHead(value) {
     const node = { value, next: null };
+    // @ts-ignore
     node.next = this.#head;
     this.#head = node;
   }
