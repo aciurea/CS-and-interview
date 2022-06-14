@@ -19,6 +19,11 @@ export class LinkedList {
     }
   }
 
+  insertAnotherList(list) {
+    this.#tail.next = list;
+    return this;
+  }
+
   insertBeforeHead(value) {
     const node = { value, next: null };
     // @ts-ignore
