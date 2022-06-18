@@ -77,7 +77,7 @@ function partition3(head, value) {
   return list.getList();
 }
 
-// console.log(JSON.stringify(partition3(list.getList(), 5), null, 3));
+console.log(JSON.stringify(partition3(list.getList(), 5), null, 3));
 
 function partition4(head, value) {
   if (head == null) return null;
