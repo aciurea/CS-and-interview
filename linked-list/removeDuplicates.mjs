@@ -25,6 +25,7 @@ import { LinkedList } from './linkedList.mjs';
 //   return list;
 // };
 const removeDuplicates = (list) => {
+  const finalList = list;
   let prevNode = null;
   const buff = {};
 
@@ -38,11 +39,11 @@ const removeDuplicates = (list) => {
     list = list.next;
   }
 
-  if (buff[prevNode.next?.value]) {
+  if (buff[list?.value]) {
     prevNode.next = null;
   }
 
-  return list;
+  return finalList;
 };
 
 const linkedList = new LinkedList(1);
