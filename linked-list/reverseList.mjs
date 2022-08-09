@@ -14,12 +14,14 @@ export function reverseList(list) {
   return head;
 }
 
-// const list = new LinkedList(1);
+function test() {
+  const list = new LinkedList(1);
 
-// list.insert(2);
-// list.insert(3);
-// list.insert(4);
-// list.insert(5);
-
+  list.insert(2);
+  list.insert(3);
+  list.insert(4);
+  list.insert(5);
+}
+// test();
 // // [1]->[2]->[3]->[4]->[5]
 // console.log(JSON.stringify(reverseList(list.getList()), null, 3));
