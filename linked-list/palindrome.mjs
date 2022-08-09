@@ -1,11 +1,11 @@
 // Check if a list is a palindrom
 // LinkedList: {value: 123, next: null}
 
-import { isPalindrom } from "../utils/isPalindrom.mjs";
+import { isPalindrome } from "../utils/isPalindrome.mjs";
 import { LinkedList } from "./linkedList.mjs";
 import { reverseList } from "./reverseList.mjs";
 
-function isPalindromList(list) {
+function isPalindromeList(list) {
     if(list == null || list.next === null)
         return true;
     let value = '';
@@ -16,10 +16,10 @@ function isPalindromList(list) {
         node = node.next;
     }
 
-    return isPalindrom(value);
+    return isPalindrome(value);
 }
 
-function isPalindromList2(list) {
+function isPalindromeList2(list) {
     let list2 = reverseList(list);
 
     while(list !== null) {
@@ -41,7 +41,7 @@ function test() {
     list.insert('o');
     list.insert('c');
 
-    console.log(isPalindromList2(list.getList()));
+    console.log(isPalindromeList2(list.getList()));
 }
 
 test();

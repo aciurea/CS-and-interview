@@ -1,4 +1,4 @@
-export const isPalindrom = (value) => {
+export const isPalindrome = (value) => {
     if(value === null || value.length < 2) return true;
 
     for(let i = 0; i < value.length / 2; i++) {
@@ -12,10 +12,10 @@ export const isPalindrom = (value) => {
 }
 
 function test() {
-    console.log(isPalindrom('cojocs'));
+    console.log(isPalindrome('cojocs'));
     // console.log(isPalindrom('cojoc'));
-    console.log(isPalindrom('cojocc'));
+    console.log(isPalindrome('cojocc'));
     // console.log(isPalindrom('coc'));
 }
 
-// test();
+test();
