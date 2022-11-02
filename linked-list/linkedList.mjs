@@ -10,6 +10,18 @@ export class LinkedList {
     this.#tail = this.#head;
   }
 
+  getNodeByValue(value) {
+    let node = this.#head;
+
+    while(node != null) {
+      if(node.value == value) 
+        return node
+
+      node = node.next
+    }
+    return null
+  }
+
   insert(value) {
     const node = { value, next: null };
     if (this.#tail.value == null) this.#head = this.#tail = node;
@@ -17,6 +29,11 @@ export class LinkedList {
       this.#tail.next = node;
       this.#tail = node;
     }
+  }
+
+  insertNode(node) {
+    this.#tail.next = node;
+    return this;
   }
 
   insertAnotherList(list) {
