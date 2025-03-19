@@ -51,26 +51,21 @@ function deleteNode<T>(node: TNode<T> | null, parent: TNode<T>, value: T, direct
 
   // node === value;
 
-  // case 1.
+  // case 1. there are no children
   if (!node.left && !node.right) {
     parent[direction] = null;
     return;
   }
 
-  // case 2.
-  // I have a single child.
+  // case 2. I have one child.
   if (!node.left || !node.right) {
     parent[direction] = node[direction]; // I delete the current
   }
 
-  // case 3
-  debugger;
-  // I have 2 children
+  // case 3 I have 2 children
   if (node.left && node.right) {
     const leftTreeHeight = getTreeHeight(node.left);
     const rightTreeHeight = getTreeHeight(node.right);
-
-    // const newValue = leftTreeHeight > rightTreeHeight ?  findLargestValue(node.left) : findSmalestValue(node.right);
 
     if (leftTreeHeight > rightTreeHeight) {
       const largetValue = findLargestValue(node.left);
@@ -106,12 +101,3 @@ function getTreeHeight<T>(node: TNode<T> | null, height = 0): number {
 
   return leftHeight > rightHeight ? leftHeight : rightHeight;
 }
-
-/**
- * case 1): no children, just delete
- * case 2): one child, set parent to child, therefore will delete the current node.
- * case 3): search the largest in the "smallest" tree, delete that node, and replace it with the node that needs to be deleted
- * OR search the smalles in the "largest" tree, delete that node, and replace it with the node that needs to be deleted
- *
- * DECISION will be taken based on the height of the tree if provide, it will lead to a smaller tree in height which will be good for traversing in the future
- */
